@@ -1,0 +1,54 @@
+import time
+
+def introduction():
+    print("Welcome to the Text Adventure Game!")
+    time.sleep(1)
+    print("You find yourself in a mysterious forest. Choose your path wisely.")
+
+def make_choice(choices):
+    print("Choose your next move:")
+    for i, choice in enumerate(choices, 1):
+        print(f"{i}. {choice}")
+
+    while True:
+        try:
+            choice = int(input("Enter the number of your choice: "))
+            if 1 <= choice <= len(choices):
+                return choice
+            else:
+                print("Invalid choice. Try again.")
+        except ValueError:
+            print("Invalid input. Enter a number.")
+
+def forest_path():
+    print("You enter a dense forest.")
+    time.sleep(1)
+    print("Ahead, you see two paths.")
+
+    choices = ["Take the left path", "Take the right path"]
+    choice = make_choice(choices)
+
+    if choice == 1:
+        print("You encounter a friendly squirrel. It guides you to safety.")
+        return "happy_ending"
+    else:
+        print("Uh-oh! You encounter a bear. It doesn't look happy.")
+        return "sad_ending"
+
+def happy_ending():
+    print("Congratulations! You've reached the happy ending of the adventure.")
+
+def sad_ending():
+    print("Oh no! The bear was not friendly. Better luck next time.")
+
+def main():
+    introduction()
+    current_scene = forest_path()
+
+    if current_scene == "happy_ending":
+        happy_ending()
+    else:
+        sad_ending()
+
+if __name__ == "__main__":
+    main()
